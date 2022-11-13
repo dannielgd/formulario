@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+class Cliente {
+  nome: string = '';
+  email: string = '';
+  profissao: string = 'Empresário';
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,14 +14,18 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
 
+  cliente = new Cliente();
+
   profissoes = ['Programador', 'Empresário', 'Outra'];
   profissao='Empresário';
 
   salvar(form: NgForm) {
-    console.log(this.profissao);
+    // this.cliente.nome = form.value.primeiroNome;
+    // this.cliente.email = form.value.emailAddress;
+    // this.cliente.profissao = form.value.profissao;
 
-    console.log(form);
-    console.log(form.value.profissao);
+    console.log(form.value);
+    console.log(this.cliente);
 
   }
 
