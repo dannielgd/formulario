@@ -1,6 +1,6 @@
 <div class="container">
 
-
+  {{ cliente | json }}
 
   <div *ngIf="usuarioForm.invalid && usuarioForm.touched" class="alert alert-danger">
     Preencha todos os campos corretamente!
@@ -32,7 +32,7 @@
        [class.is-invalid]="profissao.invalid && profissao.touched">
         <option value="">Selecione</option>
         <option *ngFor="let profissao of profissoes"
-          [value]="profissao">{{ profissao }}</option>
+          >{{ profissao }}</option>
       </select>
 
       <div *ngIf="profissao.invalid && profissao.touched" class="invalid-feedback">Informe uma Profissão</div>
