@@ -1,31 +1,38 @@
 <div class="container">
 
-  {{usuarioForm.valid}}
+
 
   <div *ngIf="usuarioForm.invalid" class="alert alert-danger">
     Preencha todos os campos corretamente!
   </div>
-  <form #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
+  <form autocomplete="off" #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
     <div class="mb-3">
       <label class="form-label">Nome</label>
       <input type="text" class="form-control" name="primeiroNome"
-      [(ngModel)]="cliente.nome" required minlength="3">
+      [(ngModel)]="cliente.nome" required minlength="3" #nome="ngModel">
+
+      <div *ngIf="nome.hasError('required')">Informe um nome</div>
+      <div *ngIf="nome.hasError('minlength')">O Nome deve ser completo</div>
     </div>
 
     <div class="mb-3">
       <label class="form-label">E-mail</label>
       <input type="text" class="form-control" name="emailAddress"
-      [(ngModel)]="cliente.email" required email>
+      [(ngModel)]="cliente.email" email #email="ngModel">
+
+      <div *ngIf="email.invalid">Informe um email válido</div>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Profissão</label>
       <select class="form-control" name="profissao"
-       [(ngModel)]="cliente.profissao" required>
+       [(ngModel)]="cliente.profissao" required #profissao="ngModel">
         <option value="">Selecione</option>
         <option *ngFor="let profissao of profissoes"
           [value]="profissao">{{ profissao }}</option>
       </select>
+
+      <div *ngIf="profissao.invalid">Informe uma Profissão</div>
     </div>
 
     <button type="submit" class="btn btn-primary"
