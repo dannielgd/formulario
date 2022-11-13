@@ -1,7 +1,10 @@
 <div class="container">
 
-  {{cliente | json}}
   {{usuarioForm.valid}}
+
+  <div *ngIf="usuarioForm.invalid" class="alert alert-danger">
+    Preencha todos os campos corretamente!
+  </div>
   <form #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
     <div class="mb-3">
       <label class="form-label">Nome</label>
