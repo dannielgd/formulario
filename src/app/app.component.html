@@ -2,7 +2,7 @@
 
 
 
-  <div *ngIf="usuarioForm.invalid" class="alert alert-danger">
+  <div *ngIf="usuarioForm.invalid && usuarioForm.touched" class="alert alert-danger">
     Preencha todos os campos corretamente!
   </div>
   <form autocomplete="off" #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
@@ -11,8 +11,8 @@
       <input type="text" class="form-control" name="primeiroNome"
       [(ngModel)]="cliente.nome" required minlength="3" #nome="ngModel">
 
-      <div *ngIf="nome.hasError('required')">Informe um nome</div>
-      <div *ngIf="nome.hasError('minlength')">O Nome deve ser completo</div>
+      <div *ngIf="nome.hasError('required') && nome.touched">Informe um nome</div>
+      <div *ngIf="nome.hasError('minlength') && nome.touched">O Nome deve ser completo</div>
     </div>
 
     <div class="mb-3">
@@ -20,7 +20,7 @@
       <input type="text" class="form-control" name="emailAddress"
       [(ngModel)]="cliente.email" email #email="ngModel">
 
-      <div *ngIf="email.invalid">Informe um email válido</div>
+      <div *ngIf="email.invalid && email.touched">Informe um email válido</div>
     </div>
 
     <div class="mb-3">
@@ -32,7 +32,7 @@
           [value]="profissao">{{ profissao }}</option>
       </select>
 
-      <div *ngIf="profissao.invalid">Informe uma Profissão</div>
+      <div *ngIf="profissao.invalid && profissao.touched">Informe uma Profissão</div>
     </div>
 
     <button type="submit" class="btn btn-primary"
